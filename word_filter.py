@@ -5,8 +5,8 @@ class WordFilter:
     def detect(self, word):
         return self.word_filter in word
 
-    def censor(self, word):
-        return word.replace(self.word_filter, "<censored>")
+    def censor(self, word, replace_word="<censored>"):
+        return word.replace(self.word_filter, replace_word)
 
 
 my_filter = WordFilter("アーセナル")
@@ -24,3 +24,10 @@ print(my_filter.censor("昨日のアーセナルの試合アツかった！"))  
 
 # NGワードが含まれていない場合
 print(my_filter.censor("昨日のリバプールの試合アツかった！"))  # "昨日のリバプールの試合アツかった！" を返す ※出力されるわけではありません！
+
+# C-3
+# NGワードが含まれている場合
+print(my_filter.censor("昨日のアーセナルの試合アツかった！", "TEST"))  # "昨日の<censored>の試合アツかった！" を返す ※出力されるわけではありません！
+
+# NGワードが含まれていない場合
+print(my_filter.censor("昨日のリバプールの試合アツかった！", "TEST"))  # "昨日のリバプールの試合アツかった！" を返す ※出力されるわけではありません！
